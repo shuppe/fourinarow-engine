@@ -86,9 +86,9 @@ public class FourInARow extends AbstractGame {
         FourInARow game = new FourInARow();
 
         // DEV_MODE settings
-        game.TEST_BOT = "java -cp /home/jim/workspace/fourinarow-starterbot-java/bin/ bot.BotStarter";
+        game.TEST_BOT = "java -cp /Volumes/Primaire/Dev/workspace/FourInARowBot/bin/production/FourInARowBot / bot.BotStarter";
         game.NUM_TEST_BOTS = 2;
-        game.DEV_MODE = false;
+        game.DEV_MODE = true;
         
         game.setupEngine(args);
         game.runEngine();
