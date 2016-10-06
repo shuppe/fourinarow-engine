@@ -54,7 +54,9 @@ public class Processor implements GameHandler {
     public void playRound(int roundNumber) {
         for (Player player : mPlayers) {
             player.sendUpdate("round",  mRoundNumber);
+            System.out.printf("round %d\n",  mRoundNumber);
             player.sendUpdate("field", mField.toString());
+            System.out.printf("field %s\n",  mField);
             if (getWinner() == null) {
                 String response = player.requestMove("move");
                 Move move = new Move(player);
@@ -120,7 +122,8 @@ public class Processor implements GameHandler {
     
     /**
      * Parses player response and inserts disc in field
-     * @param args : command line arguments passed on running of application
+     * @param r
+     * @param player
      * @return : true if valid move, otherwise false
      */
     private Boolean parseResponse(String r, Player player) {
@@ -180,6 +183,17 @@ public class Processor implements GameHandler {
 
     @Override
     public boolean isGameOver() {
-        return (getWinner() != null || mField.isFull());
+        boolean gameOver = false;
+        Player winner = (Player)getWinner();
+        if (winner != null) {
+            System.out.printf("Winner is %s\n",winner.getName());
+            gameOver = true;
+        }
+        else if (mField.isFull()) {
+            System.out.printf("It's a draw!\n");
+            gameOver = true;
+        }
+
+        return gameOver;
     }
 }
